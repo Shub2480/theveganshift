@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
     plugins: [react()],
-    base: '/', // Using custom domain www.veganshift.com
+    base: '/theveganshift/', // GitHub Pages URL
     server: {
         port: 5173,
         open: true,
