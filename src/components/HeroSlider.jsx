@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { heroSlides } from '../data/products';
+import { getAssetUrl } from '../utils/helpers';
 import './HeroSlider.css';
 
 export default function HeroSlider() {
@@ -50,7 +51,7 @@ export default function HeroSlider() {
                         className={`slide ${index === currentSlide ? 'active' : ''}`}
                         style={{
                             '--gradient': slide.gradient,
-                            backgroundImage: `url(${slide.image})`,
+                            backgroundImage: `url(${getAssetUrl(slide.image)})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center'
                         }}

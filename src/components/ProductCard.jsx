@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Star, Leaf } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { formatCurrency, calculateDiscountPercentage } from '../utils/helpers';
+import { formatCurrency, calculateDiscountPercentage, getAssetUrl } from '../utils/helpers';
 import './ProductCard.css';
 
 export default function ProductCard({ product, featured = false }) {
@@ -39,7 +39,7 @@ export default function ProductCard({ product, featured = false }) {
             {/* Image Container */}
             <div className="product-card-image">
                 <img
-                    src={product.images?.[0] || getPlaceholderImage()}
+                    src={product.images?.[0] ? getAssetUrl(product.images[0]) : getPlaceholderImage()}
                     alt={product.name}
                     loading="lazy"
                     onError={(e) => {

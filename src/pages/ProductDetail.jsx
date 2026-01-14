@@ -20,7 +20,7 @@ import {
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
 import { useAdmin } from '../context/AdminContext';
-import { formatCurrency, calculateDiscountPercentage, formatDate } from '../utils/helpers';
+import { formatCurrency, calculateDiscountPercentage, formatDate, getAssetUrl } from '../utils/helpers';
 import './ProductDetail.css';
 
 export default function ProductDetail() {
@@ -178,7 +178,7 @@ export default function ProductDetail() {
                     <div className="product-gallery">
                         <div className="main-image-container">
                             <img
-                                src={product.images?.[selectedImage] || getPlaceholderImage(selectedImage)}
+                                src={product.images?.[selectedImage] ? getAssetUrl(product.images[selectedImage]) : getPlaceholderImage(selectedImage)}
                                 alt={product.name}
                                 className="main-image"
                                 onClick={() => setShowZoom(true)}
@@ -213,7 +213,7 @@ export default function ProductDetail() {
                                     onClick={() => setSelectedImage(index)}
                                 >
                                     <img
-                                        src={typeof img === 'string' ? img : getPlaceholderImage(index)}
+                                        src={typeof img === 'string' ? getAssetUrl(img) : getPlaceholderImage(index)}
                                         alt={`${product.name} view ${index + 1}`}
                                         onError={(e) => {
                                             e.target.src = getPlaceholderImage(index);
@@ -482,7 +482,7 @@ export default function ProductDetail() {
                         <X size={24} />
                     </button>
                     <img
-                        src={product.images?.[selectedImage] || getPlaceholderImage(selectedImage)}
+                        src={product.images?.[selectedImage] ? getAssetUrl(product.images[selectedImage]) : getPlaceholderImage(selectedImage)}
                         alt={product.name}
                         onClick={(e) => e.stopPropagation()}
                         onError={(e) => {

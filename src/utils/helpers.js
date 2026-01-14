@@ -1,5 +1,13 @@
 // Utility helper functions
 
+// Get asset URL with base path (for GitHub Pages compatibility)
+export const getAssetUrl = (path) => {
+    const base = import.meta.env.BASE_URL || '/';
+    // Remove leading slash from path if base already has trailing slash
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    return `${base}${cleanPath}`;
+};
+
 // Format currency in Indian Rupees
 export const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-IN', {
